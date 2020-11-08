@@ -1,5 +1,6 @@
 <?php
 session_start();
+if(isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
 ?>
 
@@ -58,7 +59,7 @@ session_start();
 			<div id="padd" class="shadow-lg   mh-100 col-sm-5  bg-dark text-white efecto" style="width: 100px; height: 200px"; > <a onClick="window.location.reload()">Santiago's casino</a> </div>
 			<div id="padd" class="shadow-lg text-center mh-100 col-sm-2  bg-dark  efecto text-white " style="width: 100px; height: 200px";> Bienvenido <?php echo $_SESSION['nombre_usuario']; ?></div>
 			<div id="padd" class="shadow-lg text-center mh-100 col-sm-1  bg-dark  text-white azul_borde" style="width: 100px; height: 200px";><?php echo $_SESSION['cantidad'] . "€" ; ?></div>
-			<div id="padd" class="text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px"; > Configuracion  </div>
+			<div id="padd" class="text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px"; ><a  href='configuracion.php'> Configuracion</a>  </div>
 			<div id="padd" class="text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px";> 	<a  href='logout.php'>Cerrar Sesión</a> </div>
 		</div>
 		 
@@ -261,19 +262,17 @@ session_start();
 										  <thead>
 											<tr>
 											  <th scope="col">Fila</th>
-											  <th scope="col">id_jugada</th>
-											  <th scope="col">id_jugador</th>
-											  <th scope="col">nombre</th>
-											  <th scope="col">apellido</th>
+											  <th scope="col">id_apuesta</th>
+											  <th scope="col">id_fondo</th>
+											  <th scope="col">fecha_apuesta</th>
+											  <th scope="col">id_usuario</th>
 											  <th scope="col">balance</th>
 											  <th scope="col">modo_juego</th>		  
 											</tr>
 										  </thead>
 										  
 										  <tbody>
-											
-					
-																					
+                                                            		
 									<!-- PHP incrustado que saca la info a la tabla --> 
 										<?php 
 												
@@ -284,7 +283,7 @@ session_start();
 
 												// Create connection
 												$conn = new mysqli($servername, $username, $password, $dbname);
-													$sql = "SELECT * FROM `jugadas` ORDER BY `id_jugada` DESC limit 12";
+													$sql = "SELECT * FROM `apuestas` ORDER BY `id_apuesta` DESC limit 12";
 													$result = $conn->query($sql);
 
 													$contador = 1;
@@ -293,17 +292,17 @@ session_start();
 																	
 															echo "<tr>";
 															echo "<th scope='row'>" .$contador. "</th>";
-															echo "<td>" . $row['id_jugada'] . "</td>";
-															echo "<td>" . $row['id_jugador'] . "</td>";
-															echo "<td>" . $row['nombre'] . "</td>";
-															echo "<td>" . $row['apellido'] . "</td>";
-															if($row['balance']>0){
-															echo "<td class='bg-success text-center'>" . $row['balance'] . "</td>";	
+															echo "<td>" . $row['id_apuesta'] . "</td>";
+															echo "<td>" . $row['id_fondo'] . "</td>";
+															echo "<td>" . $row['fecha_apuesta'] . "</td>";
+															echo "<td>" . $row['id_usuario'] . "</td>";
+															if($row['cantidad']>0){
+															echo "<td class='bg-success text-center'>" . $row['cantidad'] . "</td>";	
 															} else {
-															echo "<td class='bg-danger text-center'>" . $row['balance'] . "</td>";		
+															echo "<td class='bg-danger text-center'>" . $row['cantidad'] . "</td>";		
 															}
 															
-															echo "<td>" . $row['modo_juego']. "</td>";													
+															echo "<td>" . $row['id_juego']. "</td>";													
 															echo "</tr>";
 																																		
 															$contador++;
@@ -379,3 +378,9 @@ Y&ezzMcKy5JNZL7hTGRw
 
 
 
+<?php
+}
+else{
+    header('Location: index.php');
+    exit;
+}
