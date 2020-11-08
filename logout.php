@@ -1,6 +1,6 @@
 <?php
 session_start();
-unset($_SESSION['usuario']);  
+$_SESSION = array();
 header("Location: index.php");
 ?>
 
