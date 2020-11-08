@@ -4,7 +4,7 @@
 
 
 	$usuario = $_POST['usuario'];
-	$contrasena = $_POST['contrasena'];
+	$constraseña = $_POST['contraseña'];
 
 	$servername = "localhost";
 	$username = "root";
@@ -19,8 +19,7 @@
 	}
 
 
-
-	$sql = "SELECT id_usuario, usuario, contrasena, nombre, apellidos, email, fondos, divisa  FROM usuarios WHERE usuario='$usuario' AND contrasena='$contrasena'";	
+	$sql = "SELECT id_usuario, usuario, contraseña, nombre_usuario, apellido, email, id_referido FROM usuarios WHERE usuario='$usuario' AND contraseña='$constraseña'";	
     
 	$result = $conn->query($sql);
 
@@ -28,15 +27,22 @@
 		while($row = $result->fetch_assoc()) {
 		$_SESSION['id_usuario'] = $row['id_usuario'];
 		$_SESSION['usuario'] = $row['usuario']; 
-		$_SESSION['contrasena'] = $row['contrasena']; 
-	    $_SESSION['nombre'] = $row['nombre'];
-		$_SESSION['apellidos'] = $row['apellidos'];
+		$_SESSION['contraseña'] = $row['contraseña']; 
+                $_SESSION['nombre_usuario'] = $row['nombre_usuario'];
+		$_SESSION['apellido'] = $row['apellido'];
 		$_SESSION['email'] = $row['email'];
-		$_SESSION['fondos'] = $row['fondos'];
-		$_SESSION['divisa'] = $row['divisa'];
-
-		
-		}
+		$_SESSION['id_referido'] = $row['id_referido'];	
+                }
+                
+                $sql2 = "SELECT cantidad FROM fondos WHERE id_usuario='1' ";
+                $result2 = $conn->query($sql2);
+                if ($result2->num_rows > 0) {
+                    while($row = $result2->fetch_assoc()) {
+                        $_SESSION['cantidad'] = $row['cantidad'];
+                        
+                    }
+                }
+                
 	  echo json_encode(array('success' => 1));
     } else {
 	    echo json_encode(array('success' => 0));
