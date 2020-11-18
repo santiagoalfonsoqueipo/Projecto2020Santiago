@@ -87,7 +87,6 @@ session_start();
             <!-- Inicio de blocke contenido juegos --> 
             <div style="height: 650px;"  class=" row">
                 <div class=" col-sm-12   bg-dark text-white " style="height: 1250px";><h1  id="padd" class=" text-center text-white " >Usuarios</h1> 
-
                     <div class=" pt-5   row justify-center" id="contenedor_juegos">
 
 
@@ -152,9 +151,21 @@ session_start();
                                     </table>
      	                       <button type="button" id="alterar">alterar</button>
                                <button type="button" id="borrar"">borrar</button>
-                               <button type="button" id="agregar"">agregar</button>
+                               <button type="button" id="agregar"">agregar</button>                              
 	                    </form>
-
+                               </br> 
+                                <select name="usuarios-list" id="usuarios-list">
+                                        <option value="id_usuario">id_usuario</option>
+                                        <option value="usuario">usuario</option>
+                                        <option value="contraseña">contraseña</option>
+                                        <option value="nombre_usuario">nombre_usuario</option>
+                                        <option value="apellido">apellido</option>
+                                        <option value="email">email</option> 
+                                        <option value="id_referido">id_referido</option>                                      
+                                </select>                           
+                                    
+                                <input type='text' id="usuario_buscador"> 
+                            
                             </div>
 
 
@@ -225,7 +236,34 @@ session_start();
    google.charts.setOnLoadCallback(drawChart);
 </script>
 
-
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#usuario_buscador').blur(function(e) {
+        var e = document.getElementById("usuarios-list");
+        var c = document.getElementById("usuario_buscador");
+        var value = e.options[e.selectedIndex].value;
+        var text = c.value;
+        var datos = [value, text];
+        var jsonString = JSON.stringify(datos);
+        $.ajax({
+            type: 'POST',
+            url: 'buscador_usuario.php',
+            data: {data : jsonString}, 
+            success: function(response)
+            {
+                  var jsonData = JSON.parse(response);
+                  document.getElementById("id_usuario").value = jsonData.id_usuario;
+                  document.getElementById("usuario").value = jsonData.usuario;                   
+                  document.getElementById("contraseña").value = jsonData.contraseña;             
+                  document.getElementById("nombre_usuario").value = jsonData.nombre_usuario;
+                  document.getElementById("apellido").value = jsonData.apellido;
+                  document.getElementById("email").value = jsonData.email;
+                  document.getElementById("id_referido").value = jsonData.id_referido;                 
+           }
+       });
+     });
+});
+</script>
 
 
 <script type="text/javascript">
@@ -245,12 +283,12 @@ $(document).ready(function() {
                 if (jsonData.success == "1")
                 {
                     alert("ok");
-                    exit;
+                   
                 }
                 else
                 {
                     alert("No ha podido acceder al área privado porque sus credenciales de acceso no son válidas");
-                    exit;
+                    
                 }
            }
        });
@@ -274,12 +312,12 @@ $(document).ready(function() {
                 if (jsonData.success == "1")
                 {
                     alert("ok");
-                    exit;
+                    
                 }
                 else
                 {
                     alert("No ha podido acceder al área privado porque sus credenciales de acceso no son válidas");
-                    exit;
+                    
                 }
            }
        });
@@ -304,12 +342,12 @@ $(document).ready(function() {
                 if (jsonData.success == "1")
                 {
                     alert("ok");
-                    exit;
+                    
                 }
                 else
                 {
                     alert("No ha podido acceder al área privado porque sus credenciales de acceso no son válidas");
-                    exit;
+                    
                 }
            }
        });
