@@ -14,7 +14,7 @@
 	
 	/* Efectos css para el primer paralax, evitar que se repita lo deja fixed para que al subir y bajar se vea la imagen desde distintos angulos  */
 	#parallax-image {
-		background-image: url("../img/tuercas.jpg");
+		background-image: url("../img/banner.jpg");
 		height: 600px;
 		margin-left: -25rem;
 		margin-right: -25rem;
