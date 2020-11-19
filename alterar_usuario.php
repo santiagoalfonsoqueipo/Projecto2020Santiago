@@ -31,6 +31,7 @@
  $resultsqlu = $conn->query($sqlu);
  
    if($resultsqlu){
+       
  	  echo json_encode(array('success' => 1));
     
   }
