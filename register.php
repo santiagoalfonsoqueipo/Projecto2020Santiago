@@ -38,8 +38,9 @@
                 }
            $usable = $_SESSION['id_usuario_temporal'];   
            $sq3 = "INSERT INTO fondos(id_usuario, id_fondo, cantidad) values('$usable','$usable', '0')";
-           $result3 = $conn->query($sq3);   
-           
+           $result3 = $conn->query($sq3);
+           $sq4 = "INSERT INTO referidos(id_referido, id_referidor) values('$usable','$id_referido')";
+           $result4 = $conn->query($sq4);
 	   echo json_encode(array('success' => 1));
 		  
     } else {
