@@ -50,9 +50,11 @@
 	#padd{
 		padding-top: 20px;
 	}
-	
-	p{
+	#fondo{
 		padding-top: 20px;
+	}	
+	p{
+		padding-top: 5px;
 	}
 	
 	.padlr{
