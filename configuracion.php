@@ -6,6 +6,25 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
         header('Location: admin.php');
         exit;
     }
+    
+    // actualizador fondos variable
+     $id = $_SESSION['id_usuario'];
+
+     $servername = "localhost";
+     $username = "root";
+     $password = "";
+     $dbname = "web_casino";
+
+                                            // Create connection
+     $conn = new mysqli($servername, $username, $password, $dbname);
+     $id_select = $_SESSION['id_usuario'];
+     $sql2 = "SELECT cantidad FROM fondos WHERE id_usuario='$id_select' ";
+     $result2 = $conn->query($sql2);
+     if ($result2->num_rows > 0) {
+         while($row = $result2->fetch_assoc()) {
+            $_SESSION['cantidad'] = $row['cantidad'];
+         }
+      }     
     ?>
 
 
@@ -20,6 +39,8 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
             <link rel="stylesheet" href="./assets/css/style.css">
+            <link rel="stylesheet" href="./assets/css/config.css">
+
 
         </head>
         <body>
@@ -32,12 +53,12 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
                 <a href="#">Contact</a>
             </div>
 
-   
+
 
 
             <!-- efectos menu lateral --> 
             <script>
-        
+
                 function openNav() {
                     document.getElementById("mySidenav").style.width = "250px";
                     document.getElementById("main").style.marginLeft = "250px";
@@ -50,10 +71,10 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
                     document.getElementById("main").style.marginLeft = "0";
                     document.body.style.backgroundColor = "#343a40";
                 }
-                
-                
 
-         
+
+
+
             </script>
 
 
@@ -65,9 +86,9 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
                     <div  onclick="openNavr()" id="padd" class="shadow-lg  text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px";> Chat </div>
                     <div id="padd" class="shadow-lg   mh-100 col-sm-5  bg-dark text-white efecto" style="width: 100px; height: 200px"; > <a href='privado.php'">Santiago's casino</a> </div>
                     <div id="padd" class="shadow-lg text-center mh-100 col-sm-2  bg-dark  efecto text-white " style="width: 100px; height: 200px";> Bienvenido <?php echo $_SESSION['nombre_usuario']; ?></div>
-                    <div id="padd" class="shadow-lg text-center mh-100 col-sm-1  bg-dark  text-white azul_borde" style="width: 100px; height: 200px";><?php echo $_SESSION['cantidad'] . "€"; ?></div>
+                    <div id="fondo" class="shadow-lg text-center mh-100 col-sm-1  bg-dark  text-white azul_borde" style="width: 100px; height: 200px";><?php echo $_SESSION['cantidad'] . "€"; ?></div>
                     <div id="padd" class="text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px"; ><a  href='configuracion.php'> Configuracion</a>  </div>
-                    <div id="padd" class="text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px";> 	<a  href='logout.php'>Cerrar Sesión</a> </div>
+                    <div id="padd" class="text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px";> 	<a  href='logout.php'>Salir</a> </div>
                 </div>
 
 
@@ -83,82 +104,62 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
 
 
+
+
                 <!-- Inicio de blocke contenido juegos --> 
                 <div style="height: 650px;"  class=" row">
-                    <div class=" col-sm-12   bg-dark text-white " style="height: 650px";><h1  id="padd" class=" text-center text-white " >Sus datos</h1> 
+                    <div class=" col-sm-12   bg-dark text-white " style="height: 400px";><h1  id="padd" class=" text-center text-white " >Panel de configuración</h1> 
 
                         <div class=" pt-5   row justify-center" id="contenedor_juegos">
 
-                            <div class="col-12 col-md-8  center text-white " style="height: 600px; ">
+                            <div class="col-12 col-md-12  text-white " style="height: 400px; "> 
+                                <div class="row justify-center">
+                                    <div class="col-1 col-md-1 conta  contenido float">
 
-                                <table class="table table-dark">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">id_usuario</th>
-                                            <th scope="col">usuario</th>
-                                            <th class="text-success" scope="col">contraseña</th>
-                                            <th scope="col">nombre_usuario</th>
-                                            <th scope="col">apellido</th>
-                                            <th class="text-success" scope="col">email</th>
-                                            <th class="text-success" scope="col">id_referido</th>
-                                            <th scope="col">fondos</th>
-                                        </tr>
-                                    </thead>
+                                        <div class="link text"id="Datos" onclick="window.location.reload();">Datos</div>
+                                        <div class="link text" id="Jugadas">Jugadas</div>
+                                        <div class="link text" id="Depositos">Depositos</div>
+                                        <div class="link text" id="Referidos">Referidos</div>
+                                        <div class="link text" id="Ingresar">Ingresar Fondos</div>
+                                    </div>
 
-                                    <tbody>
+                                    <div class="col-9 col-md-9 conta   contenido" >
+                                        <div class="col-12 float-left ajax-config" id="ajax-config">
+                                            <?php
+                                            $id = $_SESSION['id_usuario'];
 
-                                        <!-- PHP incrustado que saca la info a la tabla --> 
-                                        <?php
-                                        $servername = "localhost";
-                                        $username = "root";
-                                        $password = "";
-                                        $dbname = "web_casino";
-                                        $user = $_SESSION['id_usuario'];
-                                        // Create connection
-                                        $conn = new mysqli($servername, $username, $password, $dbname);
-                                        $sql = "SELECT * FROM `usuarios` WHERE id_usuario ='$user' ";
-                                        $result = $conn->query($sql);
-                                        
-                                        $php_id = $_COOKIE["id_cookie"];
-                                        $php_contra = $_COOKIE["contra_cokie"];
-                                        $php_email = $_COOKIE["email_cookie"];
-                                        $php_id_ref = $_COOKIE["id_referido_cookie"];
-          
-                                        $sqlu = "UPDATE usuarios SET contraseña = '$php_contra', email = '$php_email', id_referido = '$php_id_ref'  WHERE id_usuario='$php_id';";
-                                        $resultsqlu = $conn->query($sqlu);
-                                        
-                                        $contador = 1;
-                                        
-                                        if ($result->num_rows > 0) {
-                                            while ($row = $result->fetch_assoc()) {
+                                            $servername = "localhost";
+                                            $username = "root";
+                                            $password = "";
+                                            $dbname = "web_casino";
 
-                                                echo "<tr>";
-                                                echo "<th id='id_cookie' scope='row'>" . $row['id_usuario'] . "</th>";
-                                                echo "<td>" . $row['usuario'] . "</td>";
-                                                echo "<td id='contraseña_cookie' contenteditable='true' >" . $row['contraseña'] . "</td>";
-                                                echo "<td>" . $row['nombre_usuario'] . "</td>";
-                                                echo "<td>" . $row['apellido'] . "</td>";
-                                                echo "<td id='email_cookie' contenteditable='true' >" . $row['email'] . "</td>";
-                                                echo "<td id='id_referido_cookie' contenteditable='true'>" . $row['id_referido'] . "</td>";
-                                            }
-                                            # Utilizar datos de la primera consulta para guardar los fondos de esa persona        
-
-                                            $sql2 = "SELECT cantidad FROM fondos WHERE id_usuario='$user' ";
-                                            $result2 = $conn->query($sql2);
-                                            if ($result2->num_rows > 0) {
-                                                while ($row = $result2->fetch_assoc()) {
-                                                    echo "<td>" . $row['cantidad'] . "</td>";
-                                                    echo "</tr>";
+                                            // Create connection
+                                            $conn = new mysqli($servername, $username, $password, $dbname);
+                                            
+                                            $sql = "SELECT * FROM `usuarios` where `id_usuario` = '$id'";
+                                            $result = $conn->query($sql);
+                                            if ($result->num_rows > 0) {
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo "<form id='formulario_config' name='formulario_config' method='post' > ";
+                                                    echo "<p>Su id es:" . $row['id_usuario'] . "</p>";
+                                                    echo "<p>Su usuario es:" . $row['usuario'] . "</p>";
+                                                    echo "<p>Su contraseña es: <input type='text' name='contraseña' id='contraseña' value='$row[contraseña]'></p>";
+                                                    echo "<p>su nombre es:" . $row['nombre_usuario'] . "</p>";
+                                                    echo "<p>su apellido es:" . $row['apellido'] . "</p>";
+                                                    echo "<p>Su email es: <input type='text' name='email' id='email' value='$row[email]'></p>";
+                                                    echo "<p>Su id_referido es: <input type='text' name='id_referido' id='id_referido' value='$row[id_referido]'></p>";
+                                                    echo "<button type='button' id='alterar'>cambiar datos</button>";
+                                                    echo "</form>";
                                                 }
                                             }
-                                        }
-                                        ?>
 
-                                    </tbody>
-                                </table>
-                                <div class=" text-center text-white ">
-                                    <button type="button" id="guardar" >Guardar datos</button>
-                                </div> 
+                                            ?>                                                
+                                        </div>   
+                                    </div>
+                                    <div class=" col-1 d-none d-xl-block  conta   contenido" >
+                                        banner
+                                    </div>  
+                                </div>
                             </div>
 
 
@@ -189,14 +190,17 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
                         <div class=" pt-5 pb-5 px-5 justify-content-center row">
                             <div class="col-12 mt-sm-2 col-md-3   bg-dark bono text-center bono" style="height: 180px; ">
+                                </br>
                                 <p>Bono Subscripcion</p>
                                 <p>Suscríbete y recibe 1000 créditos gratis para jugar.</p>
                             </div>
                             <div class="col-12 mt-sm-2 col-md-3 mx-5 bg-dark bono text-center  bono" style="height: 180px; ">
+                                </br>
                                 <p>Bono Deposito</p>
                                 <p>Duplica tu deposito  durante tus 1000$ dolares</p>
                             </div>
                             <div class="col-12 mt-sm-2 col-md-3  bg-dark  bono text-center bono " style="height: 180px;">
+                                </br>
                                 <p>Bono Afiliado</p>
                                 <p>Refiere a tus amigos al casino y obtener bonificaciones cuando juegan juegos.</p>
                             </div>
@@ -230,53 +234,139 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
 
 
-            <!-- Optional JavaScript -->
-            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-       
-        <script>
-        function setCookie(name,value,days) {
-        var expires = "";
-        if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days*24*60*60*1000));
-            expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-        }
-        
-        function getCookie(name) {
-            var nameEQ = name + "=";
-            var ca = document.cookie.split(';');
-            for(var i=0;i < ca.length;i++) {
-                var c = ca[i];
-                while (c.charAt(0)==' ') c = c.substring(1,c.length);
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-            }
-            return null;
-        }
 
-        document.getElementById('guardar').onclick = function() {
-           primerak = document.getElementById('id_cookie').innerHTML;
-           dato1 = document.getElementById('contraseña_cookie').innerHTML;
-           dato2 = document.getElementById('email_cookie').innerHTML;
-           dato3 = document.getElementById('id_referido_cookie').innerHTML;
-           setCookie('id_cookie',primerak,1);
-           setCookie('contra_cokie',dato1,1);
-           setCookie('email_cookie',dato2,1);
-           setCookie('id_referido_cookie',dato3,1);
-           location.reload();
-        }
-         </script>
-         
+
+
         </body>
     </html>
 
+    <script src="assets-modal/js/jquery-1.11.1.min.js"></script>
+    <script src="assets-modal/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets-modal/js/jquery.backstretch.min.js"></script>
+    <script src="assets-modal/js/scripts.js"></script>
 
 
+    <script type="text/javascript">
+     $(document).ready(function () {
+         $('#alterar').click(function (e) {
+
+            $.ajax({
+                type: 'POST',
+                url: 'alterar_config.php',
+                data: $("#formulario_config input").serialize(),
+                success: function (response)
+                 {
+                     var jsonData = JSON.parse(response);
+
+                    // user is logged in successfully in the back-end
+                    // let's redirect
+                    if (jsonData.success == "1")
+                    {
+                   alert("datos cambiados");
+
+                   } else {
+                    alert("datos no cambiados");
+
+                    }
+                 }
+        });
+     });
+   });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Jugadas').click(function (e) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'jugadas_config.php',
+                    data: $("#formulario_config input").serialize(),
+                    success: function (response)
+                    {
+
+                        document.getElementById("ajax-config").innerHTML = response;
+
+
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Depositos').click(function (e) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'depositos_config.php',
+                    data: $("#formulario_config input").serialize(),
+                    success: function (response)
+                    {
+
+                        document.getElementById("ajax-config").innerHTML = response;
+
+
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Referidos').click(function (e) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'referidos_config.php',
+                    data: $("#formulario_config input").serialize(),
+                    success: function (response)
+                    {
+
+                        document.getElementById("ajax-config").innerHTML = response;
+
+                    }
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Ingresar').click(function (e) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'ingreso_data.php',
+                    data: $("#formulario_config input").serialize(),
+                    success: function (response)
+                    {
+
+                        document.getElementById("ajax-config").innerHTML = response;
+                        $(document).ready(function () {
+                            $('#ingreso_fondo').click(function (e) {
+                                
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'ingresos_config.php',
+                                    data: $("#formulario_config input").serialize(),
+                                    success: function (response)
+                                    {
+                                        var jsonData = JSON.parse(response);
+                                        var fondos_actualizados = jsonData.success;
+                                        document.getElementById("fondo").innerHTML = fondos_actualizados +"€";
+                                        document.getElementById("ajax-config").innerHTML = "DEPOSITO REALIZADO - Redireccion en 2s";
+                                        setTimeout(location.reload.bind(location), 1500);
+                                    }
+                                });
+                            });
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 
 
 
