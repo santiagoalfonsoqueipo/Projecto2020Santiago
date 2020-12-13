@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
+    if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
     ?>
 
 
@@ -21,10 +21,9 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
             <!-- Menu lateral --> 
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Clients</a>
-                <a href="#">Contact</a>
+                <a href="info.html">info</a>
+                <a href="configuracion.php">configuracion</a>
+                <a href="logout.php">salir</a>
             </div>
 
 
@@ -54,22 +53,21 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
             <!-- Menu frontal --> 
             <div class="container-fluid" id="main">
                 <div style="height: 60px;"  class=" row">
-                    <div onclick="openNav()" id="padd" class="shadow-lg  text-center align-bottom  mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 100px";> Menu </div>
-                    <div  onclick="openNavr()" id="padd" class="shadow-lg  text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px";> Chat </div>
-                    <div id="padd" class="shadow-lg   mh-100 col-sm-5  bg-dark text-white efecto" style="width: 100px; height: 200px"; > <a onClick="window.location.reload()">Santiago's casino</a> </div>
-                    <div id="padd" class="shadow-lg text-center mh-100 col-sm-2  bg-dark  efecto text-white " style="width: 100px; height: 200px";> Bienvenido <?php echo $_SESSION['nombre_usuario']; ?></div>
-                    <div id="padd" class="shadow-lg text-center mh-100 col-sm-1  bg-dark  text-white azul_borde" style="width: 100px; height: 200px";><?php echo $_SESSION['cantidad'] . "€"; ?></div>
-                    <div id="padd" class="text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px"; ><a  href='configuracion.php'> Configuracion</a>  </div>
-                    <div id="padd" class="text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px";> 	<a  href='logout.php'>Cerrar Sesión</a> </div>
+                    <div onclick="openNav()" id="padd" class="shadow-lg  text-center align-bottom  mh-100 col-12 col-md-2  bg-dark text-white azul_borde" style="width: 100px; height: 100px";> Menu </div>
+                    <div id="padd" class="d-none d-md-block shadow-lg   mh-100 col-12 col-md-5  bg-dark text-white efecto" style="width: 100px; height: 200px"; > <a onClick="window.location.reload()">Santiago's casino</a> </div>
+                    <div id="padd" class="shadow-lg text-center mh-100 col-12 col-md-2  bg-dark  efecto text-white " style="width: 100px; height: 200px";> Bienvenido <?php echo $_SESSION['nombre_usuario']; ?></div>
+                    <div id="padd" class="shadow-lg text-center mh-100 col-12 col-md-1  bg-dark  text-white azul_borde" style="width: 100px; height: 200px";><?php echo $_SESSION['cantidad'] . "€"; ?></div>
+                    <div id="padd" class="text-center mh-100 col-12 col-md-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px"; ><a  href='configuracion.php'> Configuracion</a>  </div>
+                    <div id="padd" class="text-center mh-100 col-12 col-md-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px";> 	<a  href='logout.php'>Cerrar Sesión</a> </div>
                 </div>
 
 
                 <!-- Div del paralax principal --> 
-                <div id="parallax-image">
+                <div class="d-none d-md-block" id="parallax-image">
                     <div class="row darken-60  h-100">
                         <div class="col-md-12 align-self-center">					
-                            <h1 class="text-center text-white ">Santiago's Casino</h1>
-                            <h1 class="text-center text-white ">Diversion asegurada</h1>
+                            <h1 class="d-none d-md-block text-center text-white ">Santiago's Casino</h1>
+                            <h1 class="d-none d-md-block text-center text-white ">Diversion asegurada</h1>
                         </div>
                     </div>
                 </div>
@@ -81,76 +79,11 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
                     <div class=" col-sm-12   bg-dark text-white " style="height: 650px";><h1  id="padd" class=" text-center text-white " >Disfrute de nuestros juegos</h1> 
 
                         <div class=" pt-5   row justify-center" id="contenedor_juegos">
-                            <div style="height: 200px " class="col-md-4 ">
-                                <div class="row justify-center pl-3  juego">
+                            <div style="height: 200px " class="col-md-12 col-xl-4 ">
+                                <div class="row justify-center pl-3  ">
+                                    
                                     <!-- Divs de juegos individual --> 		
-                                    <div class="img-fluid col-md-12 text-center  "  id="fijar-img" style=" height: 150px; background-image: url('https://gvc-plc.com/wp-content/uploads/2018/03/PartyCasino-Banner1_630.jpg'); ">
-                                        <div style="height: 150px; width: 700px; " class="col-md-12">
-                                        </div>
-                                    </div>
-
-                                    <div style="height: 30px" class="col-md-12 bg-secondary text-center juego_texto " >
-                                        Ruleta Europea
-
-                                    </div>
-
-                                    <div style="height: 30px" class="col-md-12 text-center botton_jugar jugar " id="pruebaa">
-
-                                        Jugar
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            <div style="height: 200px; " class="col-md-4  ">
-                                <div class="row justify-center ">
-                                    <div class="col-md-12  px-3 ">
-                                        <div class="img-fluid col-md-12 text-center " id="fijar-img" style=" height: 150px; background-image: url('https://image.shutterstock.com/image-illustration/diamond-casino-craps-dices-3d-260nw-678689113.jpg'); ">
-                                            <div style="height: 150px; width: 700px; " class="col-md-12">
-                                            </div>
-                                        </div>
-
-                                        <div style="height: 30px" class="col-md-12 bg-secondary text-center juego_texto " >
-                                            Dados
-
-                                        </div>
-
-                                        <div style="height: 30px" class="col-md-12 text-center botton_jugar  jugar" >
-                                            Jugar
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div style="height: 200px; " class="col-md-4  ">
-                                <div class="row justify-center pr-3">
-
-                                    <div class="img-fluid col-md-12 text-center "  id="fijar-img" style=" height: 150px; background-image: url('https://image.freepik.com/vector-gratis/brillante-banner-poker-casino_91128-227.jpg'); ">
-                                        <div style="height: 150px; width: 700px; " class="col-md-12">
-                                        </div>
-                                    </div>
-                                    <div style="height: 30px" class="col-md-12 bg-secondary text-center juego_texto " >
-                                        Holdem Texas Poker
-
-                                    </div>
-
-                                    <div style="height: 30px" class="col-md-12 text-center botton_jugar jugar " >
-                                        Jugar
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class=" pt-5   row justify-center "  id="contenedor_juegos2">
-                            <div style="height: 200px " class="col-md-4 ">
-                                <div class="row justify-center pl-3">
-
-                                    <div class="img-fluid col-md-12 text-center "  id="fijar-img" style=" height: 150px; background-image: url('https://us.123rf.com/450wm/welcomia/welcomia1701/welcomia170100029/69872788-copiar-espacio-casino-fondo-3d-representa-la-ilustraci%C3%B3n-dark-casino-gambling-theme-.jpg?ver=6'); ">
+                                    <div class="img-fluid col-md-12 text-center  "  id="fijar-img" style=" height: 150px; background-image: url('assets/img/banner-tijeras.jpg'); ">
                                         <div style="height: 150px; width: 700px; " class="col-md-12">
                                         </div>
                                     </div>
@@ -160,15 +93,112 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
                                     </div>
 
-                                    <div style="height: 30px" class="col-md-12 text-center botton_jugar jugar " >
+                                    <div style="height: 30px" class="col-md-12 text-center botton_jugar jugar " id="pruebaa">
+
                                         Jugar
+
                                     </div>
+                                    
+                                    <div style="height: 30px" class="col-md-4 border border-dark  text-center bg-primary " id="comentario">
+                                      <div id="like" >Like</div> 
+                                    </div>
+                     
+                                     <div style="height: 30px" class="col-md-4 border border-dark text-center bg-primary " id="comentario">
+                                         
+                                    </div> 
+                                    
+                                     <div style="height: 30px" class="col-md-4 border border-dark text-center bg-primary " id="comentario">
+                                       Comentarios
+                                    </div>                                     
+                                    
                                 </div>
                             </div>
 
 
 
-                            <div style="height: 200px; " class="col-md-4 ">
+                            <div style="height: 200px; " class=" d-none d-xl-block  col-md-4  ">
+                                <div class="row justify-center ">
+                                    <div class="col-md-12  px-3 ">
+                                        <div class="img-fluid col-md-12 text-center " id="fijar-img" style=" height: 150px; background-image: url('https://image.shutterstock.com/image-illustration/diamond-casino-craps-dices-3d-260nw-678689113.jpg'); ">
+                                            <div style="height: 150px; width: 700px; " class="col-md-12">
+                                            </div>
+                                        </div>
+
+                                        <div style="height: 30px" class="col-md-12 bg-secondary text-center juego_texto  " >
+                                            ColorGame
+
+                                        </div>
+
+                                        <div style="height: 30px" class="col-md-12 text-center botton_jugar jugar " >
+                                            Fecha lanzamiento 26/12/2020
+                                        </div>
+
+                                        <div style="height: 30px" class="col-md-12 border border-dark  text-center bg-danger " id="comentario">
+                                          Juego Desactivado - NO DISPONIBLE
+                                        </div>
+
+                                    
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div style="height: 200px; " class="d-none d-xl-block  col-md-4  ">
+                                <div class="row justify-center pr-3">
+
+                                    <div class="img-fluid col-md-12 text-center "  id="fijar-img" style=" height: 150px; background-image: url('https://image.freepik.com/vector-gratis/brillante-banner-poker-casino_91128-227.jpg'); ">
+                                        <div style="height: 150px; width: 700px; " class="col-md-12">
+                                        </div>
+                                    </div>
+                                    <div style="height: 30px" class="col-md-12 bg-secondary text-center juego_texto " >
+                                       Ruleta europea
+                                    </div>
+
+                                    <div style="height: 30px" class="col-md-12 text-center botton_jugar jugar " >
+                                        Fecha lanzamiento 26/12/2020
+                                    </div>
+                                    
+                                    <div style="height: 30px" class="col-md-12 border border-dark  text-center bg-danger " id="comentario">
+                                      Juego Desactivado - NO DISPONIBLE
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class=" pt-5   row justify-center "  id="contenedor_juegos2">
+                            <div style="height: 200px " class="col-md-4 d-none d-xl-block ">
+                                <div class="row justify-center pl-3">
+
+                                    <div class="img-fluid col-md-12 text-center "  id="fijar-img" style=" height: 150px; background-image: url('https://us.123rf.com/450wm/welcomia/welcomia1701/welcomia170100029/69872788-copiar-espacio-casino-fondo-3d-representa-la-ilustraci%C3%B3n-dark-casino-gambling-theme-.jpg?ver=6'); ">
+                                        <div style="height: 150px; width: 700px; " class="col-md-12">
+                                        </div>
+                                    </div>
+
+                                    <div style="height: 30px" class="col-md-12 bg-secondary text-center juego_texto " >
+                                       Stake
+
+                                    </div>
+
+                                    <div style="height: 30px" class="col-md-12 text-center botton_jugar jugar " >
+                                        Fecha lanzamiento 26/12/2020
+                                    </div>
+                                    
+                                    <div style="height: 30px" class="col-md-12 border border-dark  text-center bg-danger " id="comentario">
+                                      Juego Desactivado - NO DISPONIBLE
+                                    </div>
+                                    
+    
+                                    
+                                </div>
+                            </div>
+
+
+
+                            <div style="height: 200px; " class="col-md-4 d-none d-xl-block ">
                                 <div class="row justify-center">
                                     <div class="col-md-12  px-3">
                                         <div class="img-fluid col-md-12 text-center " id="fijar-img" style=" height: 150px; background-image: url('https://image.freepik.com/vector-gratis/ilustracion-3d-fichas-casino-corona-premio-sobre-fondo-rayos-negros-decorado-cinta-confeti-dorado_1302-20397.jpg'); ">
@@ -177,19 +207,26 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
                                         </div>
 
                                         <div style="height: 30px" class="col-md-12 bg-secondary text-center juego_texto  " >
-                                            Blackjat
+                                            Crash
 
                                         </div>
 
                                         <div style="height: 30px" class="col-md-12 text-center botton_jugar jugar " >
-                                            Jugar
+                                            Fecha lanzamiento 26/12/2020
                                         </div>
+
+                                        <div style="height: 30px" class="col-md-12 border border-dark  text-center bg-danger " id="comentario">
+                                          Juego Desactivado - NO DISPONIBLE
+                                        </div>
+                                    
+                                     
+                                        
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div style="height: 200px; " class="col-md-4  ">
+                            <div style="height: 200px; " class="col-md-4 d-none d-xl-block  ">
                                 <div class="row justify-center pr-3">
 
                                     <div class="img-fluid col-md-12 text-center "  id="fijar-img" style=" height: 150px; background-image: url('https://image.freepik.com/foto-gratis/fondo-creativo-ruleta-dados-juego-cartas-fichas-casino-sobre-fondo-oscuro_99433-24.jpg'); ">
@@ -198,13 +235,19 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
                                     </div>
 
                                     <div style="height: 30px" class="col-md-12 bg-secondary text-center juego_texto " >
-                                        Ruleta rusa
+                                        Ruleta 
 
                                     </div>
 
                                     <div style="height: 30px" class="col-md-12 text-center botton_jugar jugar " >
-                                        Jugar
+                                        Fecha lanzamiento 26/12/2020
                                     </div>
+                                    
+                                    <div style="height: 30px" class="col-md-12 border border-dark  text-center bg-danger " id="comentario">
+                                      Juego Desactivado - NO DISPONIBLE
+                                    </div>
+                                    
+                                 
 
                                 </div>
                             </div>
@@ -253,8 +296,8 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
 
                         </div>
-                        <h1 class="text-center pt-5 text-white ">Ultimas Jugadas</h1>
-                        <div class=" pt-5  pb-5 px-5 row">
+                        <h1 class="d-none d-md-block text-center pt-5 text-white ">Ultimas Jugadas</h1>
+                        <div class="d-none d-md-block pt-5  pb-5 px-5 row">
 
 
 
@@ -333,8 +376,10 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
 
                 </div>
-
-
+                
+                 <div id="sesion_user">
+                    <?php echo $_SESSION['id_usuario']; ?> 
+                 </div>
 
 
 
@@ -357,16 +402,37 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
             </script>
 
             <!-- Optional JavaScript -->
-            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="assets-modal/js/jquery-1.11.1.min.js"></script>
+        <script src="assets-modal/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets-modal/js/jquery.backstretch.min.js"></script>
+        <script src="assets-modal/js/scripts.js"></script>
         </body>
     </html>
 
 
-    Y&ezzMcKy5JNZL7hTGRw
-
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#like').click(function(e) {
+        var e = document.getElementById("like");
+        var value = document.getElementById("sesion_user").innerHTML;
+        var jsonString = JSON.stringify(value);
+        $.ajax({
+            type: 'POST',
+            url: 'likes.php',
+            data: {data : jsonString}, 
+            success: function(response)
+            {
+               var jsonData = JSON.parse(response);
+               if (jsonData.handle == "1")
+                {
+                  e.innerHTML = "Likes:  " + jsonData.likes;
+  
+                }
+           }
+       });
+     });
+});
+</script>
 
 
 
