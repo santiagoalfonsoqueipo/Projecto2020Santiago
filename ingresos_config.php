@@ -33,8 +33,7 @@
         //$resultsqlu2 = $conn->query($sqlu2);
  	  echo json_encode(array('success' => $total));
     
-  }
-    else{
+  } else{
 	    echo json_encode(array('success' => 0));
 	}
         $conn->close();
