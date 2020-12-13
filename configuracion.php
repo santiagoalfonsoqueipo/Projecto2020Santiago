@@ -47,10 +47,9 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
             <!-- Menu lateral --> 
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Clients</a>
-                <a href="#">Contact</a>
+                <a href="info.html">info</a>
+                <a href="configuracion.php">configuracion</a>
+                <a href="logout.php">salir</a>
             </div>
 
 
@@ -82,8 +81,7 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
             <!-- Menu frontal --> 
             <div class="container-fluid" id="main">
                 <div style="height: 60px;"  class=" row">
-                    <div onclick="openNav()" id="padd" class="shadow-lg  text-center align-bottom  mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 100px";> Menu </div>
-                    <div  onclick="openNavr()" id="padd" class="shadow-lg  text-center mh-100 col-sm-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px";> Chat </div>
+                    <div onclick="openNav()" id="padd" class="shadow-lg  text-center align-bottom  mh-100 col-sm-2  bg-dark text-white azul_borde" style="width: 100px; height: 100px";> Menu </div>               
                     <div id="padd" class="shadow-lg   mh-100 col-sm-5  bg-dark text-white efecto" style="width: 100px; height: 200px"; > <a href='privado.php'">Santiago's casino</a> </div>
                     <div id="padd" class="shadow-lg text-center mh-100 col-sm-2  bg-dark  efecto text-white " style="width: 100px; height: 200px";> Bienvenido <?php echo $_SESSION['nombre_usuario']; ?></div>
                     <div id="fondo" class="shadow-lg text-center mh-100 col-sm-1  bg-dark  text-white azul_borde" style="width: 100px; height: 200px";><?php echo $_SESSION['cantidad'] . "€"; ?></div>
@@ -93,7 +91,7 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
 
                 <!-- Div del paralax principal --> 
-                <div id="parallax-image">
+                <div  class="d-none d-md-block" id="parallax-image">
                     <div class="row darken-60  h-100">
                         <div class="col-md-12 align-self-center">					
                             <h1 class="text-center text-white ">Perfil de <?php echo $_SESSION['nombre_usuario']; ?> </h1>
@@ -112,9 +110,9 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
                         <div class=" pt-5   row justify-center" id="contenedor_juegos">
 
-                            <div class="col-12 col-md-12  text-white " style="height: 400px; "> 
+                            <div class="col-12 col-md-12  text-white " style="height: 500px; "> 
                                 <div class="row justify-center">
-                                    <div class="col-1 col-md-1 conta  contenido float">
+                                    <div class=" col-1 col-md-1 conta  contenido float">
 
                                         <div class="link text"id="Datos" onclick="window.location.reload();">Datos</div>
                                         <div class="link text" id="Jugadas">Jugadas</div>
@@ -123,7 +121,7 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
                                         <div class="link text" id="Ingresar">Ingresar Fondos</div>
                                     </div>
 
-                                    <div class="col-9 col-md-9 conta   contenido" >
+                                    <div class=" col-md-9 conta   contenido" >
                                         <div class="col-12 float-left ajax-config" id="ajax-config">
                                             <?php
                                             $id = $_SESSION['id_usuario'];
@@ -174,8 +172,8 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
 
                 <!-- Div de segundo paralax que divide con los bonos--> 
-                <div id="parallax-image2">
-                    <div class="row darken-60 h-100">
+                <div class="d-none d-md-block" id="parallax-image2">
+                    <div class="row darken-60 h-100 ">
                         <div class="col-md-12 align-self-center">
                             <h1 class="text-center text-white ">Bonos</h1>
                         </div>
