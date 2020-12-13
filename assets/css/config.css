@@ -72,6 +72,6 @@ p{
 }
 
 #ajax-config {
-  height: calc(35vh - 35px);
+  height: calc(45vh - 35px);
   overflow-y: scroll;
 }
