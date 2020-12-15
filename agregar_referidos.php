@@ -1,19 +1,22 @@
  <?php
  session_start();
-  
-	$id_usuario = filter_input(INPUT_POST, 'id_usuario0');
+   
         include 'assets/includes/conex.php';
+        
+	$id_referido = filter_input(INPUT_POST, 'id_referido');
+        $id_referidor = filter_input(INPUT_POST, 'id_referidor');
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}
 
-    
- //borra los usuarios desde panel administrador con esta consulta
- $sqlu = "DELETE FROM usuarios WHERE id_usuario='$id_usuario';";
+    # comprobar datos de login
+ // consulta que borra referidos desde panel administrador con esta consulta
+ $sqlu = "INSERT INTO referidos (id_referido,id_referidor) VALUES ($id_referido,$id_referidor)";
  $resultsqlu = $conn->query($sqlu);
  
    if($resultsqlu){
+       
  	  echo json_encode(array('success' => 1));
     
   }

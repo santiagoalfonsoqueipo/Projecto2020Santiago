@@ -9,9 +9,11 @@
 	    die("Connection failed: " . $conn->connect_error);
 	}
   
+        
   // inserta en likes una consulta que al ser unica, solo existe una vez por usuario que clike
-  $in = "UPDATE likes set id_like = 1 where id_usuario = '$data'";
-  $resultin = $conn->query($in);     
+  $in = "UPDATE likes set id_like = 2 where id_usuario = '$data'";
+  $resultin = $conn->query($in);    
+  
   // ve cuantos likes hay y los devuelve en array json para editar el innerhtml de div likes en index
   $sql = "select * from likes where id_like = '1'";
   $resultsqlu = $conn->query($sql);
@@ -23,7 +25,7 @@
        $contadorlikes++;
       }
     }
-    
+   // ve cuantos dlikes hay y los devuelve en array json para editar el innerhtml de div likes en index   
   $sql2 = "select * from likes where id_like = '2'";
   $resultsqlu2 = $conn->query($sql2);
   $contadordlikes = 0;  

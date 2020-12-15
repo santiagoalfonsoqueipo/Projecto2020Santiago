@@ -1,6 +1,18 @@
 <?php
 session_start();
     if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
+      // actualizador fondos variable
+     $id = $_SESSION['id_usuario'];
+
+     include 'assets/includes/conex.php';
+     $id_select = $_SESSION['id_usuario'];
+     $sql2 = "SELECT cantidad FROM fondos WHERE id_usuario='$id_select' ";
+     $result2 = $conn->query($sql2);
+     if ($result2->num_rows > 0) {
+         while($row = $result2->fetch_assoc()) {
+            $_SESSION['cantidad'] = $row['cantidad'];
+         }
+      }   
     ?>
 
 
@@ -17,36 +29,16 @@ session_start();
             <link rel="stylesheet" href="./assets/css/style.css">
 
         </head>
+
+            
         <body>
+            
             <!-- Menu lateral --> 
             <div id="mySidenav" class="sidenav">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="info.html">info</a>
                 <a href="configuracion.php">configuracion</a>
                 <a href="logout.php">salir</a>
             </div>
-
-
-
-
-            <!-- efectos menu lateral --> 
-            <script>
-
-                function openNav() {
-                    document.getElementById("mySidenav").style.width = "250px";
-                    document.getElementById("main").style.marginLeft = "250px";
-                    document.body.style.backgroundColor = "#343a40";
-                }
-
-                function closeNav() {
-                    document.getElementById("mySidenav").style.width = "0px";
-                    ;
-                    document.getElementById("main").style.marginLeft = "0";
-                    document.body.style.backgroundColor = "#343a40";
-                }
-
-
-            </script>
 
 
 
@@ -61,6 +53,7 @@ session_start();
                     <div id="padd" class="text-center mh-100 col-12 col-md-1  bg-dark text-white azul_borde" style="width: 100px; height: 200px";> 	<a  href='logout.php'>Cerrar Sesión</a> </div>
                 </div>
 
+                
 
                 <!-- Div del paralax principal --> 
                 <div class="d-none d-md-block" id="parallax-image">
@@ -76,9 +69,10 @@ session_start();
 
                 <!-- Inicio de blocke contenido juegos --> 
                 <div style="height: 650px;"  class=" row">
-                    <div class=" col-sm-12   bg-dark text-white " style="height: 650px";><h1  id="padd" class=" text-center text-white " >Disfrute de nuestros juegos</h1> 
-
-                        <div class=" pt-5   row justify-center" id="contenedor_juegos">
+                    <div class=" col-sm-12   bg-dark text-white " style="height: 650px";>
+                            <h1  id="padd" class=" text-center text-white " >Disfrute de nuestros juegos</h1> 
+                           
+                        <div class="    row justify-center" id="contenedor_juegos">
                             <div style="height: 200px " class="col-md-12 col-xl-4 ">
                                 <div class="row justify-center pl-3  ">
                                     
@@ -99,17 +93,13 @@ session_start();
 
                                     </div>
                                     
-                                    <div style="height: 30px" class="col-md-4 border border-dark  text-center bg-primary " id="comentario">
+                                    <div style="height: 30px" class="col-md-6 border border-dark  text-center bg-primary " id="comentario">
                                       <div id="like" >Like</div> 
                                     </div>
                      
-                                     <div style="height: 30px" class="col-md-4 border border-dark text-center bg-primary " id="comentario">
-                                         
-                                    </div> 
-                                    
-                                     <div style="height: 30px" class="col-md-4 border border-dark text-center bg-primary " id="comentario">
-                                       Comentarios
-                                    </div>                                     
+                                     <div style="height: 30px" class="col-md-6 border border-dark text-center bg-primary " id="comentario">
+                                       <div id="dlike" >DisLike</div>   
+                                    </div>                             
                                     
                                 </div>
                             </div>
@@ -322,13 +312,7 @@ session_start();
 
                                         <!-- PHP incrustado que saca la info a la tabla --> 
                                         <?php
-                                        $servername = "localhost";
-                                        $username = "root";
-                                        $password = "";
-                                        $dbname = "web_casino";
-
-                                        // Create connection
-                                        $conn = new mysqli($servername, $username, $password, $dbname);
+                                        include 'assets/includes/conex.php';
                                         $sql = "SELECT * FROM `apuestas` ORDER BY `id_apuesta` DESC limit 12";
                                         $result = $conn->query($sql);
 
@@ -369,7 +353,9 @@ session_start();
                         <!-- Footer--> 
                         <div class=" fixed-bottom pie pt-5  pb-5 px-5 row">
                             <div class=" fixed-bottom col-sm-12  text-center bg-secondary  text-white " style="height: 30px; ">
-                                Bandera idioma / Politica de privacidad, terminos de uso, provably fair </div>
+                                <p>Derechos Reservados para nombre Digital Multigames S.L 2020©  <a href="sitemap.html">Sitemap</a> </p>
+                              
+                              
                         </div>
 
                     </div>
@@ -377,62 +363,24 @@ session_start();
 
                 </div>
                 
-                 <div id="sesion_user">
-                    <?php echo $_SESSION['id_usuario']; ?> 
-                 </div>
 
 
 
             </div>
 
-            <script>
+           
 
-                function estado3() {
-
-                    document.getElementById("contenedor_juegos").innerHTML = "	<div style='height: 500px' class='col-md-12'>   <a href='./ruleta_europea.php'>    <img src=\"./assets/img/modo-juego.jpg\" width=\"800px\" height=\"400px\" class=\"center\">   	</div> ";
-                    document.getElementById("contenedor_juegos2").innerHTML = "	";
-
-                }
-
-
-
-
-                document.getElementById("pruebaa").addEventListener("click", estado3, false);
-
-            </script>
-
-            <!-- Optional JavaScript -->
+            <!--Boostrap y js personal -->
         <script src="assets-modal/js/jquery-1.11.1.min.js"></script>
         <script src="assets-modal/bootstrap/js/bootstrap.min.js"></script>
         <script src="assets-modal/js/jquery.backstretch.min.js"></script>
         <script src="assets-modal/js/scripts.js"></script>
+        <script src="assets/js/privado.js"></script>
         </body>
     </html>
 
 
-<script type="text/javascript">
-$(document).ready(function() {
-    $('#like').click(function(e) {
-        var e = document.getElementById("like");
-        var value = document.getElementById("sesion_user").innerHTML;
-        var jsonString = JSON.stringify(value);
-        $.ajax({
-            type: 'POST',
-            url: 'likes.php',
-            data: {data : jsonString}, 
-            success: function(response)
-            {
-               var jsonData = JSON.parse(response);
-               if (jsonData.handle == "1")
-                {
-                  e.innerHTML = "Likes:  " + jsonData.likes;
-  
-                }
-           }
-       });
-     });
-});
-</script>
+
 
 
 

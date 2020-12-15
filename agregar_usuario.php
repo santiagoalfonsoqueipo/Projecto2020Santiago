@@ -3,29 +3,23 @@
    
 
 
-	$id_usuario = filter_input(INPUT_POST, 'id_usuario');
-	$usuario = filter_input(INPUT_POST, 'usuario');
-	$constraseña = filter_input(INPUT_POST, 'contraseña');
-	$nombre_usuario = filter_input(INPUT_POST, 'nombre_usuario');
-	$apellido = filter_input(INPUT_POST, 'apellido');
-	$email = filter_input(INPUT_POST, 'email');
-	$id_referido = filter_input(INPUT_POST, 'id_referido');
+	$id_usuario = filter_input(INPUT_POST, 'id_usuario0');
+	$usuario = filter_input(INPUT_POST, 'usuario0');
+	$constraseña = filter_input(INPUT_POST, 'contraseña0');
+	$nombre_usuario = filter_input(INPUT_POST, 'nombre_usuario0');
+	$apellido = filter_input(INPUT_POST, 'apellido0');
+	$email = filter_input(INPUT_POST, 'email0');
+	$id_referido = filter_input(INPUT_POST, 'id_referido0');
 
 
         
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "web_casino";
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+        include 'assets/includes/conex.php';
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}
 
-    # comprobar datos de login
+    # agrega usuarios desde form registro
 
   $sql = "INSERT INTO usuarios (id_usuario, usuario, contraseña, nombre_usuario, apellido, email, id_referido) VALUES ('$id_usuario', '$usuario', '$constraseña', '$nombre_usuario', '$apellido', '$email', '$id_referido')";
   $resultsqlu = $conn->query($sql);

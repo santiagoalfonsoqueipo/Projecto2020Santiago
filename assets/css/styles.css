@@ -1,19 +1,22 @@
-/* Made with love by Mutiullah Samim*/
 
-@import url('https://fonts.googleapis.com/css?family=Numans');
-
-html,body{
-background-image: url('https://data2.1freewallpapers.com/download/casino-roulette-gambling.jpg');
-background-size: cover;
-background-repeat: no-repeat;
-height: 100%;
-font-family: 'Numans', sans-serif;
-}
 
 .container{
 height: 100%;
 align-content: center;
 }
+
+.over {
+  border: solid 1px #ccc;
+  margin:25px;
+  width:500px;
+  height:250px;
+  overflow-x:auto;
+  overflow-y:auto;
+}
+
+
+
+
 
 .card{
 height: 370px;

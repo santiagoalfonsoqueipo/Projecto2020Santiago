@@ -7,19 +7,13 @@
 
         $total = $fondos + $ingreso;
         
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "web_casino";
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+        include 'assets/includes/conex.php';
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}
 
-    # comprobar datos de login
+    # Actualiza los fondos que se ingresen
 
  $sqlu = "UPDATE fondos SET   cantidad = '$total' WHERE id_usuario='$id_usuario';";
  $resultsqlu = $conn->query($sqlu);

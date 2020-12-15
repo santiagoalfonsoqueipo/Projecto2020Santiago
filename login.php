@@ -6,13 +6,7 @@
 	$usuario = $_POST['usuario'];
 	$constraseña = $_POST['contraseña'];
 
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "web_casino";
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+        include 'assets/includes/conex.php';
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);

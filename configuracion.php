@@ -10,13 +10,7 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
     // actualizador fondos variable
      $id = $_SESSION['id_usuario'];
 
-     $servername = "localhost";
-     $username = "root";
-     $password = "";
-     $dbname = "web_casino";
-
-                                            // Create connection
-     $conn = new mysqli($servername, $username, $password, $dbname);
+     include 'assets/includes/conex.php';
      $id_select = $_SESSION['id_usuario'];
      $sql2 = "SELECT cantidad FROM fondos WHERE id_usuario='$id_select' ";
      $result2 = $conn->query($sql2);
@@ -55,26 +49,7 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
 
 
-            <!-- efectos menu lateral --> 
-            <script>
 
-                function openNav() {
-                    document.getElementById("mySidenav").style.width = "250px";
-                    document.getElementById("main").style.marginLeft = "250px";
-                    document.body.style.backgroundColor = "#343a40";
-                }
-
-                function closeNav() {
-                    document.getElementById("mySidenav").style.width = "0px";
-                    ;
-                    document.getElementById("main").style.marginLeft = "0";
-                    document.body.style.backgroundColor = "#343a40";
-                }
-
-
-
-
-            </script>
 
 
 
@@ -107,12 +82,13 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
                 <!-- Inicio de blocke contenido juegos --> 
                 <div style="height: 650px;"  class=" row">
                     <div class=" col-sm-12   bg-dark text-white " style="height: 400px";><h1  id="padd" class=" text-center text-white " >Panel de configuración</h1> 
-
+                        <div id="migas_config">Privado > Configuracion > Datos
+                        </div>  
                         <div class=" pt-5   row justify-center" id="contenedor_juegos">
 
                             <div class="col-12 col-md-12  text-white " style="height: 500px; "> 
                                 <div class="row justify-center">
-                                    <div class=" col-1 col-md-1 conta  contenido float">
+                                    <div class=" col-12 col-md-1 conta  contenido float">
 
                                         <div class="link text"id="Datos" onclick="window.location.reload();">Datos</div>
                                         <div class="link text" id="Jugadas">Jugadas</div>
@@ -121,18 +97,12 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
                                         <div class="link text" id="Ingresar">Ingresar Fondos</div>
                                     </div>
 
-                                    <div class=" col-md-9 conta   contenido" >
+                                    <div class=" col-md-9  conta   contenido" >
                                         <div class="col-12 float-left ajax-config" id="ajax-config">
                                             <?php
                                             $id = $_SESSION['id_usuario'];
 
-                                            $servername = "localhost";
-                                            $username = "root";
-                                            $password = "";
-                                            $dbname = "web_casino";
-
-                                            // Create connection
-                                            $conn = new mysqli($servername, $username, $password, $dbname);
+                                             include 'assets/includes/conex.php';
                                             
                                             $sql = "SELECT * FROM `usuarios` where `id_usuario` = '$id'";
                                             $result = $conn->query($sql);
@@ -182,22 +152,22 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
 
 
                 <!-- Div de bonos --> 
-                <div   class=" row">
-                    <div class="pt-5  col-12  bg-dark text-white " style="width: 100px; height: 400px">
+                <div   class=" row ">
+                    <div class="d-none d-md-block pt-5  col-12  bg-dark text-white " style="width: 100px; height: 400px">
 
 
-                        <div class=" pt-5 pb-5 px-5 justify-content-center row">
-                            <div class="col-12 mt-sm-2 col-md-3   bg-dark bono text-center bono" style="height: 180px; ">
+                        <div class="  pt-5 pb-5 px-5 justify-content-center row">
+                            <div class="   col-md-3   bg-dark bono text-center bono" style="height: 180px; ">
                                 </br>
                                 <p>Bono Subscripcion</p>
                                 <p>Suscríbete y recibe 1000 créditos gratis para jugar.</p>
                             </div>
-                            <div class="col-12 mt-sm-2 col-md-3 mx-5 bg-dark bono text-center  bono" style="height: 180px; ">
+                            <div class="d-none d-md-block col-md-3 mx-5 bg-dark bono text-center  bono" style="height: 180px; ">
                                 </br>
                                 <p>Bono Deposito</p>
                                 <p>Duplica tu deposito  durante tus 1000$ dolares</p>
                             </div>
-                            <div class="col-12 mt-sm-2 col-md-3  bg-dark  bono text-center bono " style="height: 180px;">
+                            <div class="d-none d-md-block col-md-3  bg-dark  bono text-center bono " style="height: 180px;">
                                 </br>
                                 <p>Bono Afiliado</p>
                                 <p>Refiere a tus amigos al casino y obtener bonificaciones cuando juegan juegos.</p>
@@ -216,7 +186,9 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
                         <!-- Footer--> 
                         <div class=" fixed-bottom pie pt-5  pb-5 px-5 row">
                             <div class=" fixed-bottom col-sm-12  text-center bg-secondary  text-white " style="height: 30px; ">
-                                Bandera idioma / Politica de privacidad, terminos de uso, provably fair </div>
+                                <p>Derechos Reservados para nombre Digital Multigames S.L 2020©  <a href="sitemap.html">Sitemap</a> </p>
+                              
+                              
                         </div>
 
                     </div>
@@ -243,128 +215,9 @@ if (isset($_SESSION['usuario']) && !empty($_SESSION['usuario'])) {
     <script src="assets-modal/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets-modal/js/jquery.backstretch.min.js"></script>
     <script src="assets-modal/js/scripts.js"></script>
+    <script src="assets/js/configuracion.js"></script>
 
 
-    <script type="text/javascript">
-     $(document).ready(function () {
-         $('#alterar').click(function (e) {
-
-            $.ajax({
-                type: 'POST',
-                url: 'alterar_config.php',
-                data: $("#formulario_config input").serialize(),
-                success: function (response)
-                 {
-                     var jsonData = JSON.parse(response);
-
-                    // user is logged in successfully in the back-end
-                    // let's redirect
-                    if (jsonData.success == "1")
-                    {
-                   alert("datos cambiados");
-
-                   } else {
-                    alert("datos no cambiados");
-
-                    }
-                 }
-        });
-     });
-   });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#Jugadas').click(function (e) {
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'jugadas_config.php',
-                    data: $("#formulario_config input").serialize(),
-                    success: function (response)
-                    {
-
-                        document.getElementById("ajax-config").innerHTML = response;
-
-
-                    }
-                });
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#Depositos').click(function (e) {
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'depositos_config.php',
-                    data: $("#formulario_config input").serialize(),
-                    success: function (response)
-                    {
-
-                        document.getElementById("ajax-config").innerHTML = response;
-
-
-                    }
-                });
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#Referidos').click(function (e) {
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'referidos_config.php',
-                    data: $("#formulario_config input").serialize(),
-                    success: function (response)
-                    {
-
-                        document.getElementById("ajax-config").innerHTML = response;
-
-                    }
-                });
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#Ingresar').click(function (e) {
-
-                $.ajax({
-                    type: 'POST',
-                    url: 'ingreso_data.php',
-                    data: $("#formulario_config input").serialize(),
-                    success: function (response)
-                    {
-
-                        document.getElementById("ajax-config").innerHTML = response;
-                        $(document).ready(function () {
-                            $('#ingreso_fondo').click(function (e) {
-                                
-                                $.ajax({
-                                    type: 'POST',
-                                    url: 'ingresos_config.php',
-                                    data: $("#formulario_config input").serialize(),
-                                    success: function (response)
-                                    {
-                                        var jsonData = JSON.parse(response);
-                                        var fondos_actualizados = jsonData.success;
-                                        document.getElementById("fondo").innerHTML = fondos_actualizados +"€";
-                                        document.getElementById("ajax-config").innerHTML = "DEPOSITO REALIZADO - Redireccion en 2s";
-                                        setTimeout(location.reload.bind(location), 1500);
-                                    }
-                                });
-                            });
-                        });
-                    }
-                });
-            });
-        });
-    </script>
 
 
 

@@ -5,21 +5,15 @@ session_start();
 
 $id_usuario = $_SESSION['id_usuario'];
 
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "web_casino";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
+include 'assets/includes/conex.php';
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-# comprobar datos de login
 
+// Crea una tabla response con los referidos del usuario que la llama
 $sqlu = "SELECT * from referidos where id_referidor = '$id_usuario'";
 $resultsqlu = $conn->query($sqlu);
 $contador = 1;

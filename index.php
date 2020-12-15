@@ -4,6 +4,7 @@ if (empty($_SESSION['usuario'])) {
     ?>
 
 
+  
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -63,11 +64,12 @@ if (empty($_SESSION['usuario'])) {
                             </form>
                         </div>
                         <div class="card-footer">
-                            <div class="d-flex justify-content-center links">
-                                Don't have an account?<a class="btn btn-link-1 launch-modal" href="#" data-modal-id="modal-register">Sign up</a>
+                            <div class=" justify-content-center links">
+                                No tienes cuenta?<a class="btn btn-link-1 launch-modal" href="#" data-modal-id="modal-register">Sign up</a>
 
                             </div>
-
+                            <div id="alerta_login" class="text-white" >
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,6 +124,8 @@ if (empty($_SESSION['usuario'])) {
                                 </div>                                 
 
                                 <button type="submit" class="btn" id="btnSubmit">Sign me up!</button>
+                                <div id="alerta_registro" class="text-dark text-center" >
+                                </div>
                             </form>
 
                         </div>
@@ -135,75 +139,16 @@ if (empty($_SESSION['usuario'])) {
             <script src="assets-modal/js/jquery.backstretch.min.js"></script>
             <script src="assets-modal/js/scripts.js"></script>
             <script src="assets/js/validation.js"></script>
-            
+            <script src="assets/js/index.js"></script>
 
 
   
-            
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#loginform').submit(function (e) {
-                        e.preventDefault();
 
-                        $.ajax({
-                            type: 'POST',
-                            url: 'login.php',
-                            data: $(this).serialize(),
-                            success: function (response)
-                            {
-                                var jsonData = JSON.parse(response);
-
-                                // user is logged in successfully in the back-end
-                                // let's redirect
-                                if (jsonData.success == "1")
-                                {
-                                    location.href = "privado.php";
-                                    exit;
-                                } else
-                                {
-                                    alert("No ha podido acceder al área privado porque sus credenciales de acceso no son válidas");
-                                    exit;
-                                }
-                            }
-                        });
-                    });
-                });
-            </script>
-
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $('#registerform').submit(function (e) {
-                        e.preventDefault();
-
-                        $.ajax({
-                            type: 'POST',
-                            url: 'register.php',
-                            data: $(this).serialize(),
-                            success: function (response)
-                            {
-                                var jsonData = JSON.parse(response);
-
-                                // user is logged in successfully in the back-end
-                                // let's redirect
-                                if (jsonData.success == "1")
-                                {
-                                    alert("registrado");
-                                    exit;
-                                } else
-                                {
-                                    alert("No ha podido acceder al área privado porque sus credenciales de acceso no son válidas");
-                                    exit;
-                                }
-                            }
-                        });
-                    });
-                });
-            </script>
 
 
         </body>
     </html>
-    <?php
+<?php
 } else {
     header('Location: privado.php');
 }

@@ -6,21 +6,15 @@ session_start();
 $id_usuario = $_SESSION['id_usuario'];
 
 
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "web_casino";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+# conexion
+include 'assets/includes/conex.php';
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-# comprobar datos de login
 
+// devuelve un response con la tabla de todos los depositos realizado por el usuario que lo requiera
 $sqlu = "select *from  fondos WHERE id_usuario='$id_usuario';";
 $resultsqlu = $conn->query($sqlu);
 

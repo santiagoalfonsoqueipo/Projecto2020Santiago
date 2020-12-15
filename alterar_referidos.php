@@ -7,10 +7,11 @@
 	    die("Connection failed: " . $conn->connect_error);
 	}
       
-        // lopea entre todos los botones del formulario referidos para ver cual ha querido borrar
+        // loopea entre todos los datos posibles mandados desde los diferentes botones del panel administrador
        for ($i = 1; $i < 10; $i++) {
-           $id_referido = $_POST['id_referido'];
-            $sqlu = "DELETE FROM referidos WHERE id_referido = $id_referido ";
+            $id_referido = $_POST['id_referido'];
+            $id_referidor = $_POST['id_referidor'];
+            $sqlu = "UPDATE  referidos SET id_referidor = $id_referidor where id_referido = $id_referido ";
             $resultsqlu = $conn->query($sqlu);
        }
 	

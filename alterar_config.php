@@ -9,19 +9,13 @@
 
 
         
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$dbname = "web_casino";
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+        include 'assets/includes/conex.php';
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}
 
-    # comprobar datos de login
+    #  altera los datos mandados desde el panel del usuario
 
  $sqlu = "UPDATE usuarios SET   contraseña = '$constraseña',   email = '$email',  id_referido = '$id_referido' WHERE id_usuario='$id_usuario';";
  $resultsqlu = $conn->query($sqlu);
