@@ -64,8 +64,8 @@ session_start();
 
 
    
-                <div style="height: 650px;"  class=" row">
-                        <div class=" col-sm-12   bg-dark text-white " style="height: 400px";><h1  id="padd" class=" text-center text-white " >Panel de Administracion</h1> 
+                <div   class=" row">
+                        <div class=" col-sm-12   bg-dark text-white " ;><h1  id="padd" class=" text-center text-white " >Panel de Administracion</h1> 
                             <div id="migas_config">Admin > Configuracion > Usuarios
                             </div>  
                             <div class=" pt-5   row justify-center" id="contenedor_juegos">
@@ -112,7 +112,7 @@ session_start();
                                                 $contador = 0;
                                                 if ($result->num_rows > 0) {
                                                     while ($row = $result->fetch_assoc()) {
-
+                                                        
                                                         echo "<tr>";
                                                         echo "<td scope='row'> <input name='id_usuario$contador' id='id_usuario$contador'  value='$row[id_usuario]'> </td>";
                                                         echo "<td> <input  name='usuario$contador' id='usuario$contador' value='$row[usuario]'> </td>";

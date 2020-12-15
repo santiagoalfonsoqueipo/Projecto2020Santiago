@@ -42,7 +42,7 @@ echo "
 <tbody> 
 ";
 
-$contador = 1;
+$contador = 0;
 $sqlu = "SELECT * from depositos ";
 $resultsqlu = $conn->query($sqlu);
 if ($resultsqlu->num_rows > 0) {
@@ -54,7 +54,6 @@ if ($resultsqlu->num_rows > 0) {
     echo "<td> <input  type='text' name='fecha_deposito$contador' id='fecha_deposito$contador' value='$row[fecha_deposito]'> </td>";
     echo "<td> <input  type='text' name='cantidad$contador' id='cantidad$contador' value='$row[cantidad]'> </td>";  
     echo "<td>";
-    echo " <button type='button' id='alterar_depositos_$contador'>alterar</button> <button type='button' id='borrar_depositos_$contador'>borrar</button>";
     echo "</td>";
     echo "</tr>";
     $contador++;
@@ -64,16 +63,7 @@ if ($resultsqlu->num_rows > 0) {
  } 
  
 echo "
-<tr>
-<th scope='row'> <input name='id_depositoi'   id='id_depositoi'  value=''> </th>
-<th scope='row'> <input name='id_fondoi'   id='id_fondoi'  value=''> </th>
-<td> <input  type='text' name='id_usuarioi' id='id_usuarioi' value=''> </td>
-<td> <input  type='text' name='fecha_depositoi' id='fecha_depositoi' value=''> </td>
-<td> <input  type='text' name='cantidad' id='cantidad' value=''> </td>
-<td>
-<button type='button' id='agregar_depositos'>agregar</button> 
-</td>
-</tr>
+
 </tbody>
 
 </table>

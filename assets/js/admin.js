@@ -46,38 +46,149 @@ $(document).ready(function () {
 
  // funcion que keyup que guarda los valores de una lista y input para hacer una consulta devuelve tamnaño de la consulta
  // y edita los campos de la tabla con la consulta
-    $('#referidos_buscador').keyup(function (e) {
-        var e = document.getElementById("referidos_list");
-        var c = document.getElementById("referidos_buscador");
+    $('#apuestas-buscador').keyup(function (e) {
+        var e = document.getElementById("apuestas-list");
+        var c = document.getElementById("apuestas-buscador");
         var value = e.options[e.selectedIndex].value;
         var text = c.value;
         var datos = [value, text];
         var jsonString = JSON.stringify(datos);
-        document.getElementById("alerta_referidos").innerHTML = "";
         $.ajax({
             type: 'POST',
-            url: 'buscador_referidos.php',
+            url: 'buscador_apuestas.php',
             data: {data: jsonString},
             success: function (response)
             {
                var jsonData = JSON.parse(response);
 
 
-                for (i = 0; i <= jsonData[2][0]; ++i) {
-                document.getElementById("id_referidor_" + i).value = jsonData[0][i];
-                document.getElementById("id_referido_" + i).value = jsonData[1][i];
+                for (i = 0; i <= jsonData[6][0]; ++i) {
+                document.getElementById("id_apuesta" + i).value = jsonData[0][i];
+                document.getElementById("id_juego" + i).value = jsonData[1][i];
+                document.getElementById("id_fondo" + i).value = jsonData[2][i];
+                document.getElementById("id_usuario" + i).value = jsonData[3][i];
+                document.getElementById("fecha_apuesta" + i).value = jsonData[4][i];
+                document.getElementById("cantidad" + i).value = jsonData[5][i];               
                 }
-                for (i = 0; i <= jsonData[2][0]; ++i) {
-                document.getElementById("id_referidor_" + i).style.background = 'orange';
-                document.getElementById("id_referido_" + i).style.background = 'orange';
+                for (i = 0; i <= jsonData[6][0]; ++i) {
+                document.getElementById("id_apuesta" + i).style.background = 'orange';;
+                document.getElementById("id_juego" + i).style.background = 'orange';
+                document.getElementById("id_fondo" + i).style.background = 'orange';
+                document.getElementById("id_usuario" + i).style.background = 'orange';
+                document.getElementById("fecha_apuesta" + i).style.background = 'orange';
+                document.getElementById("cantidad" + i).style.background = 'orange';                        
                 }
-                document.getElementById("alerta_referidos").innerHTML = "Usuarios encontrados tablas actualizadas para mostrar";
+                document.getElementById("alerta_apuestas").innerHTML = "Apuestas encontradas, tabla actualizada" + jsonData;
 
             }
         });
     });
 
 
+
+    $('#depositos-buscador').keyup(function (e) {
+         var e = document.getElementById("depositos-list");
+         var c = document.getElementById("depositos-buscador");
+         var value = e.options[e.selectedIndex].value;
+         var text = c.value;
+         var datos = [value, text];
+         var jsonString = JSON.stringify(datos);
+         document.getElementById("alerta_depositos").innerHTML = "";
+         $.ajax({
+             type: 'POST',
+             url: 'buscador_depositos.php',
+             data: {data: jsonString},
+             success: function (response)
+             {
+                var jsonData = JSON.parse(response);
+
+
+                    for (i = 0; i <= jsonData[5][0]; ++i) {
+                    document.getElementById("id_deposito" + i).value = jsonData[0][i];
+                    document.getElementById("id_fondo" + i).value = jsonData[1][i];
+                    document.getElementById("id_usuario" + i).value = jsonData[2][i];
+                    document.getElementById("fecha_deposito" + i).value = jsonData[3][i];
+                    document.getElementById("cantidad" + i).value = jsonData[4][i];
+                    }
+                    for (i = 0; i <= jsonData[5][0]; ++i) {
+                    document.getElementById("id_deposito" + i).style.background = 'orange';
+                    document.getElementById("id_fondo" + i).style.background = 'orange';
+                    document.getElementById("id_usuario" + i).style.background = 'orange';
+                    document.getElementById("fecha_deposito" + i).style.background = 'orange';
+                    document.getElementById("cantidad" + i).style.background = 'orange';
+                    }
+                    document.getElementById("alerta_depositos").innerHTML = "Usuarios encontrados tablas actualizadas para mostrar: " + jsonData;
+
+             }
+         });
+     });
+
+
+     // funcion que utiliza un keyup para mandar un dato de un imput a un php que devuelve una tabla con contenidos que encuntre
+    $('#referidos_buscador').keyup(function (e) {
+         var e = document.getElementById("referidos_list");
+         var c = document.getElementById("referidos_buscador");
+         var value = e.options[e.selectedIndex].value;
+         var text = c.value;
+         var datos = [value, text];
+         var jsonString = JSON.stringify(datos);
+         document.getElementById("alerta_referidos").innerHTML = "";
+         $.ajax({
+             type: 'POST',
+             url: 'buscador_referidos.php',
+             data: {data: jsonString},
+             success: function (response)
+             {
+                var jsonData = JSON.parse(response);
+
+
+                 for (i = 0; i <= jsonData[2][0]; ++i) {
+                 document.getElementById("id_referidor_" + i).value = jsonData[0][i];
+                 document.getElementById("id_referido_" + i).value = jsonData[1][i];
+                 }
+                 for (i = 0; i <= jsonData[2][0]; ++i) {
+                 document.getElementById("id_referidor_" + i).style.background = 'orange';
+                 document.getElementById("id_referido_" + i).style.background = 'orange';
+                 }
+                 document.getElementById("alerta_referidos").innerHTML = "Usuarios encontrados tablas actualizadas para mostrar: " + jsonData;
+
+             }
+         });
+     });
+ 
+    
+     $('#fondos-buscador').keyup(function (e) {
+         var e = document.getElementById("fondos-list");
+         var c = document.getElementById("fondos-buscador");
+         var value = e.options[e.selectedIndex].value;
+         var text = c.value;
+         var datos = [value, text];
+         var jsonString = JSON.stringify(datos);
+         document.getElementById("alerta_fondos").innerHTML = "";
+         $.ajax({
+             type: 'POST',
+             url: 'buscador_fondos.php',
+             data: {data: jsonString},
+             success: function (response)
+             {
+                var jsonData = JSON.parse(response);
+
+
+                 for (i = 0; i <= jsonData[3][0]; ++i) {
+                 document.getElementById("id_fondo" + i).value = jsonData[0][i];
+                 document.getElementById("id_usuario" + i).value = jsonData[1][i];
+                 document.getElementById("cantidad" + i).value = jsonData[1][i];                
+                 }
+                 for (i = 0; i <= jsonData[3][0]; ++i) {
+                 document.getElementById("id_fondo" + i).style.background = 'orange';
+                 document.getElementById("id_usuario" + i).style.background = 'orange';
+                 document.getElementById("cantidad" + i).style.background = 'orange';                    
+                 }
+                 document.getElementById("alerta_fondos").innerHTML = "Fondos encontrados output " + jsonData;
+
+             }
+         });
+     });
 
 
 
@@ -284,7 +395,10 @@ for (let i = 0; i < 10; i++) {
             {
                 document.getElementById("migas_config").innerHTML = "Admin > Configuracion > Apuestas";
                 document.getElementById("ajax-config").innerHTML = response;
-
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.src = "assets/js/admin.js";
+                    document.getElementsByTagName('head')[0].appendChild(s);
             }
         });
     });
@@ -299,6 +413,10 @@ for (let i = 0; i < 10; i++) {
             {
                 document.getElementById("migas_config").innerHTML = "Admin > Configuracion > Depositos";
                 document.getElementById("ajax-config").innerHTML = response;
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.src = "assets/js/admin.js";
+                    document.getElementsByTagName('head')[0].appendChild(s);
 
             }
         });
@@ -316,6 +434,10 @@ for (let i = 0; i < 10; i++) {
             {
                 document.getElementById("migas_config").innerHTML = "Admin > Configuracion > Fondos";
                 document.getElementById("ajax-config").innerHTML = response;
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.src = "assets/js/admin.js";
+                    document.getElementsByTagName('head')[0].appendChild(s);
 
             }
         });
@@ -332,6 +454,10 @@ for (let i = 0; i < 10; i++) {
             {
                 document.getElementById("migas_config").innerHTML = "Admin > Configuracion > Likes";
                 document.getElementById("ajax-config").innerHTML = response;
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.src = "assets/js/admin.js";
+                    document.getElementsByTagName('head')[0].appendChild(s);
 
             }
         });
@@ -347,6 +473,10 @@ for (let i = 0; i < 10; i++) {
             {
                 document.getElementById("migas_config").innerHTML = "Admin > Configuracion > Juegos";
                 document.getElementById("ajax-config").innerHTML = response;
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.src = "assets/js/admin.js";
+                    document.getElementsByTagName('head')[0].appendChild(s);
 
             }
         });
@@ -368,6 +498,28 @@ for (let i = 0; i < 10; i++) {
             }
 
 });
+
+
+/*js menu  */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "#343a40";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0px";
+    document.getElementById("main").style.marginLeft = "0";
+    document.body.style.backgroundColor = "#343a40";
+}
+
+/* js cambio de contenido juego  */
+function estado3() {
+
+    document.getElementById("contenedor_juegos").innerHTML = "	<div style='height: 500px' class='col-md-12'>   <a href='./juego_1.php'>    <img src=\"./assets/img/modo-juego.jpg\" width=\"800px\" height=\"400px\" class=\"center\">   	</div> ";
+    document.getElementById("contenedor_juegos2").innerHTML = "	";
+
+}
 
 
 

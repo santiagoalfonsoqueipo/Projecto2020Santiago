@@ -21,9 +21,9 @@ echo "
 <option value='id_usuario'>id_usuario</option>
 <option value='cantidad'>cantidad</option>
 </select>
+<input type='text' id='fondos-buscador'> 
 <br>
-<br>
-<input type='text' id='depositos-buscador'> 
+
 <br>
 
 <form id='formulario_referidos' name='formulario_fondos' method='post' >
@@ -40,7 +40,7 @@ echo "
 <tbody> 
 ";
 
-$contador = 1;
+$contador = 0;
 $sqlu = "SELECT * from depositos ";
 $resultsqlu = $conn->query($sqlu);
 if ($resultsqlu->num_rows > 0) {
@@ -50,7 +50,6 @@ if ($resultsqlu->num_rows > 0) {
     echo "<td> <input  type='text' name='id_usuario$contador' id='id_usuario$contador' value='$row[id_usuario]'> </td>";
     echo "<td> <input  type='text' name='cantidad$contador' id='cantidad$contador' value='$row[cantidad]'> </td>";  
     echo "<td>";
-    echo " <button type='button' id='alterar_fondos_$contador'>alterar</button> <button type='button' id='borrar_fondos_$contador'>borrar</button>";
     echo "</td>";
     echo "</tr>";
     $contador++;
@@ -60,14 +59,7 @@ if ($resultsqlu->num_rows > 0) {
  } 
  
 echo "
-<tr>
-<th scope='row'> <input name='id_fondoi'   id='id_fondoi'  value=''> </th>
-<th scope='row'> <input name='id_usuarioi'   id='id_usuarioi'  value=''> </th>
-<td> <input  type='text' name='cantidad' id='cantidad' value=''> </td>
-<td>
-<button type='button' id='agregar_fondos'>agregar</button> 
-</td>
-</tr>
+
 </tbody>
 
 </table>

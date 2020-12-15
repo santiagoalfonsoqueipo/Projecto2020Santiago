@@ -16,12 +16,7 @@ if ($conn->connect_error) {
 
 echo "
 </br>
-<select name='juegos-list' id='juegos-list'>
-<option value='id_juego'>id_juego</option>
-<option value='nombre_juego'>nombre_juego</option>
-</select>                           
-<input type='text' id='juegos-buscador'> 
-</br>
+
 </br> 
 <form id='formulario_referidos' name='formulario_juegos' method='post' >
 <table  class='table table-dark'>
@@ -44,7 +39,6 @@ if ($resultsqlu->num_rows > 0) {
     echo "<th scope='row'><input  type='text' name='id_juego$contador' id='id_juego$contador' value='$row[id_juego]' disabled> </th>";
     echo "<td> <input  type='text' name='nombre_juego$contador' id='nombre_juego$contador' value='$row[nombre_juego]'> </td>"; 
     echo "<td>";
-    echo " <button type='button' id='alterar_juegos_$contador'>alterar</button> <button type='button' id='borrar_juegos_$contador'>borrar</button>";
     echo "</td>";
     echo "</tr>";
     $contador++;
@@ -54,13 +48,7 @@ if ($resultsqlu->num_rows > 0) {
  } 
  
 echo "
-<tr>
-<th scope='row'> <input name='id_juegoi'   id='id_juegoi'  value=''> </th>
-<th scope='row'> <input name='nombre_juegoi'   id='nombre_juegoi'  value=''> </th>
-<td>
-<button type='button' id='agregar_juegos'>agregar</button> 
-</td>
-</tr>
+
 </tbody>
 
 </table>
