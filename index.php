@@ -27,7 +27,7 @@ if (empty($_SESSION['usuario'])) {
             <link rel="stylesheet" type="text/css" href="./assets/css/styles.css">
             <link rel="stylesheet" href="assets-modal/bootstrap/css/bootstrap.min.css">
             <link rel="stylesheet" href="assets-modal/css/form-elements.css">
-            <link rel="stylesheet" href="assets/css/validation.css">
+            <link rel="stylesheet" href="assets/css/index.css"
 
         </head>
         <body>
@@ -37,9 +37,7 @@ if (empty($_SESSION['usuario'])) {
                         <div class="card-header">
                             <h3>Sign In</h3>
                             <div class="d-flex justify-content-end social_icon">
-                                <span><i class="fab fa-facebook-square"></i></span>
-                                <span><i class="fab fa-google-plus-square"></i></span>
-                                <span><i class="fab fa-twitter-square"></i></span>
+              
                             </div>
                         </div>
                         <div class="card-body">
